@@ -1,3 +1,3 @@
-export function test() {
-  console.log("test lol")
-}
+import { tracing } from "./tracing"
+
+export const config = tracing
