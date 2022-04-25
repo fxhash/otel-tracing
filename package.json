@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A backend-shared package to output tracing data",
   "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fxhash/otel-tracing.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
