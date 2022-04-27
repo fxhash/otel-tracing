@@ -1,7 +1,4 @@
-import { tracing } from "./tracing"
+import { tracing as config } from "./tracing"
 import { createSpan } from "./create-span"
 
-export default {
-  config: tracing,
-  createSpan,
-}
+export { config, createSpan }
