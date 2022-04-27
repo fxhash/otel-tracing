@@ -1,6 +1,7 @@
 import { getNodeAutoInstrumentations }  from "@opentelemetry/auto-instrumentations-node"
 import { NodeTracerProvider } from "@opentelemetry/node"
 import { registerInstrumentations } from "@opentelemetry/instrumentation"
+import { IgnoreMatcher } from "@opentelemetry/instrumentation-http/build/src/types"
 import { BatchSpanProcessor } from "@opentelemetry/tracing"
 import { JaegerExporter } from "@opentelemetry/exporter-jaeger"
 import { Resource } from "@opentelemetry/resources"
@@ -12,8 +13,8 @@ interface ITracingConfig {
   jaegerEndpoint: string
   serviceName: string
   logTraces?: boolean
-  ignoreOutgoingUrls?: string[]
-  ignoreIncomingPaths?: string[]
+  ignoreOutgoingUrls?: IgnoreMatcher[]
+  ignoreIncomingPaths?: IgnoreMatcher[]
 }
 
 const defaultTracingConfig: Partial<ITracingConfig> = {
@@ -57,12 +58,14 @@ export function tracing(config: ITracingConfig) {
   provider.register()
 
   // we compose the ignore arrays with the default values
-  const ignoreOutgoingUrls: string[] = [
+  const ignoreOutgoingUrls: IgnoreMatcher[] = [
     ...(config.ignoreOutgoingUrls || []),
     JAEGER_ENDPOINT,
   ]
-  const ignoreIncomingPaths: string[] = [
+  const ignoreIncomingPaths: IgnoreMatcher[] = [
     ...(config.ignoreIncomingPaths || []),
+    "/hello",
+    "/",
   ]
 
   registerInstrumentations({

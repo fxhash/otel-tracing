@@ -1,6 +1,6 @@
 {
   "name": "@fxhash/otel-tracing",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A backend-shared package to output tracing data",
   "main": "build/index.js",
   "files": [
