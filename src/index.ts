@@ -1,3 +1,7 @@
 import { tracing } from "./tracing"
+import { createSpan } from "./create-span"
 
-export const config = tracing
+export default {
+  config: tracing,
+  createSpan,
+}
